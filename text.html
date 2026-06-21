@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>范绍仁的个人主页</title>
+    <style>
+        body {
+            background-color: #0f172a;
+            text-align: center;
+            font-family: sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        h1 {
+            color: #38bdf8;
+            text-shadow: 0 0 20px #38bdf8;
+        }
+        h2 {
+            color: #ff007c;
+            text-shadow: 0 0 20px #ff007c;
+        }
+        h6 {
+            color: crimson;
+            text-shadow: 0 0 25px crimson;
+        }
+        img {
+            border-radius: 50%;
+            border: 4px solid white;
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            box-shadow: 0 0 30px #38bdf8;
+        }
+        a {
+            text-decoration: none;
+        }
+        @keyframes leftRightMove {
+            0% {
+                transform: translateX(-80px);
+            }
+            100% {
+                transform: translateX(80px);
+            }
+        }
+
+        .btn-subsite {
+            display: inline-block;
+            padding: 15px 40px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-subsite:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(102, 126, 234, 0.8);
+        }
+        .btn-subsite:active {
+            transform: scale(0.95);
+        }
+
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+        }
+        body>*:not(#matrix-canvas) {
+            position: relative;
+            z-index: 1;
+        }
+        body h1,
+        body h2,
+        body img,
+        body a,
+        body h6,
+        body .btn-subsite {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>范绍仁的个人主页</h1>
+    <h2>数学一百分啦！！！</h2>
+    <img src="picture.png" alt="头像">
+
+    <a href="/Download/" class="btn-subsite">
+        🚀 进入子网站
+    </a>
+
+    <h6>提示:此网页由VScode制作</h6>
+
+    <script>
+        (function initMatrix() {
+            const FONT_SIZE = 26;
+            const COLUMN_GAP = FONT_SIZE * 0.55;
+            const DROP_SPEED = 1.2;
+
+            const CHARS =
+                'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
+                'abcdefghijklmnopqrstuvwxyz' +
+                '0123456789' +
+                '!@#$%^&*()_+-=[]{}|;:,.<>?/\\\'"`~' +
+                '汉字你我他天地人龙虎凤' +
+                'あいうえおかきくけこさしすせそ' +
+                'αβγδεζηθικλμνξοπρστυφχψω' +
+                'ΔΩΣΠΦΨ';
+
+            const canvas = document.createElement('canvas');
+            canvas.id = 'matrix-canvas';
+            document.body.prepend(canvas);
+            const ctx = canvas.getContext('2d');
+            let width, height;
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const effectiveGap = COLUMN_GAP;
+            let columns = Math.floor(width / effectiveGap);
+            let drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.random() * -300 - 50;
+            }
+
+            function draw() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.06)';
+                ctx.fillRect(0, 0, width, height);
+
+                ctx.font = FONT_SIZE + 'px "Courier New", monospace';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'top';
+
+                for (let i = 0; i < drops.length; i++) {
+                    const char = CHARS[Math.floor(Math.random() * CHARS.length)];
+                    const x = i * effectiveGap + effectiveGap / 2;
+                    const y = drops[i] * FONT_SIZE;
+
+                    const greenBase = 180 + Math.floor(Math.random() * 75);
+                    const alpha = 0.5 + Math.random() * 0.5;
+                    let r = 0, g = greenBase, b = 0;
+                    const style = Math.random();
+                    if (style < 0.08) {
+                        r = 200 + Math.floor(Math.random() * 55);
+                        g = 255;
+                        b = 200 + Math.floor(Math.random() * 55);
+                    } else if (style < 0.16) {
+                        r = 0;
+                        g = 220 + Math.floor(Math.random() * 35);
+                        b = 100 + Math.floor(Math.random() * 80);
+                    } else {
+                        r = 0;
+                        g = greenBase;
+                        b = 0;
+                    }
+
+                    ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+                    ctx.fillText(char, x, y);
+
+                    if (y > height && Math.random() > 0.98) {
+                        drops[i] = -Math.random() * 6 - 2;
+                    }
+                    drops[i] += DROP_SPEED;
+                }
+            }
+
+            const interval = setInterval(draw, 30);
+
+            window.addEventListener('resize', function onResize() {
+                resize();
+                const newColumns = Math.floor(width / effectiveGap);
+                while (drops.length < newColumns) {
+                    drops.push(Math.random() * -300 - 50);
+                }
+                while (drops.length > newColumns) {
+                    drops.pop();
+                }
+                columns = newColumns;
+            });
+
+            window.stopMatrix = function () {
+                clearInterval(interval);
+                canvas.remove();
+                delete window.stopMatrix;
+                console.log('🛑 矩阵已停止，刷新页面可恢复。');
+            };
+            console.log('✅ 黑客帝国 · 密集雨已启动！输入 stopMatrix() 可停止。');
+        })();
+    </script>
+
+</body>
+</html>

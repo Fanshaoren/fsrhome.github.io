@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下载</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0a0e1a;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            color: #fff;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 40px;
+            padding: 50px 40px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            text-align: center;
+        }
+        h1 {
+            font-size: 48px;
+            background: linear-gradient(135deg, #f093fb, #f5576c, #4facfe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+        .content-box {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 24px;
+            padding: 30px;
+            margin: 20px 0;
+            border-left: 4px solid #4facfe;
+            text-align: left;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .content-box strong {
+            color: #4facfe;
+        }
+        .btn-back {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 14px 44px;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: #0a0e1a;
+            font-weight: 700;
+            font-size: 18px;
+            border-radius: 60px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(79, 172, 254, 0.3);
+        }
+        .btn-back:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 50px rgba(79, 172, 254, 0.6);
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.35);
+            margin-top: 20px;
+        }
+        .emoji-big {
+            font-size: 72px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 30px 20px; }
+            h1 { font-size: 32px; }
+        }
+        a h1 {
+            color: blueviolet;
+            text-shadow: 0 0 20px blueviolet, 0 0 40px blueviolet;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <span class="emoji-big">🚀</span>
+        <h1>欢迎来到下载传送</h1>
+        <p class="subtitle">✦ 选择你的下载内容 ✦</p>
+
+        <div class="content-box">
+            <p>📝 <strong>在这里下载：</strong></p>
+            <ul style="list-style: none; padding-left: 0; margin-top: 10px;">
+                <li><a href="https://code.visualstudio.com/" style="text-decoration: none; font-size: 20px; color: blueviolet; text-shadow: 0 0 15px blueviolet;">VScode下载</a></li>
+                <li><a href="https://visualstudio.microsoft.com/" style="text-decoration: none; font-size: 20px; color: blueviolet; text-shadow: 0 0 15px blueviolet;">VS下载</a></li>
+                <li><a href="https://afdian.com/p/0164034c016c11ebafcb52540025c377" style="text-decoration: none; font-size: 20px; color: blueviolet; text-shadow: 0 0 15px blueviolet;">PCL下载</a></li>
+            </ul>
+        </div>
+
+        <a href="../text.html" class="btn-back">← 返回主站</a>
+    </div>
+
+</body>
+</html>
