@@ -78,6 +78,7 @@
             width: 100vw;
             height: 100vh;
             z-index: -1;
+            pointer-events: none;
         }
         body>*:not(#matrix-canvas) {
             position: relative;
@@ -98,7 +99,9 @@
 
     <h1>范绍仁的个人主页</h1>
     <h2>数学一百分啦！！！</h2>
-    <img src="picture.png" alt="图片" onclick="window.location.href='https://www.baidu.com';" style="cursor:pointer;">
+    <a href="https://www.baidu.com" style="display: inline-block;">
+        <img src="picture.png" alt="图片" draggable="false">
+    </a>
 
     <a href="download.html" class="btn-subsite">
         🚀 进入下载界面
